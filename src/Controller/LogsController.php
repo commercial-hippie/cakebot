@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Logs Controller
@@ -20,7 +21,7 @@ class LogsController extends AppController
      * @var array
      * @see \Cake\Controller\Component\PaginatorComponent
      */
-    public  $paginate = array(
+    public $paginate = array(
         'limit' => 100,
         'order' => array(
             'Logs.created' => 'DESC'
@@ -29,7 +30,7 @@ class LogsController extends AppController
 
     function beforeFilter(Event $event) {
         parent::beforeFilter($event);
-        $this->Auth->allow('link');
+        // $this->Auth->allow('link');
     }
 
     /**
@@ -138,16 +139,13 @@ class LogsController extends AppController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($channel = null)
     {
-        $log = $this->Logs->get($id, [
-            'contain' => []
-        ]);
+        $logs = $this->Logs->findByChannel('#' . $channel);
         // if (!empty($this->params['named']['page']) && $this->params['named']['page'] > 50) {
         //     $this->redirect('/');
         // }
-        // $this->set('logs', $this->paginate('Log', array('channel' => "#$channel")));
-        $this->set('log', $log);
-        $this->set('_serialize', ['log']);
+        $this->set('logs', $logs);
+        $this->set('_serialize', ['logs']);
     }
 }

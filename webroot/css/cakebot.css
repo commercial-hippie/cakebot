@@ -508,7 +508,7 @@ Log style information
 	text-align: left;
 }
 .logs th.at, .logs th.actions,.logs th.channel, .logs th.username {
-	width: 33px;
+	/*width: 33px;*/
 }
 
 .logs th.text {

@@ -39,7 +39,7 @@ $cakeBotDescription =  __('for CakeBot: the best friend of irc');
     <div id="container">
         <div id="header">
             <h1>
-                <?php echo $this->Html->link('CakeBot', '/', null, false, false);?>
+                <?= $this->Html->link('CakeBot', '/') ?>
             </h1>
         </div>
         <div id="main_nav">
