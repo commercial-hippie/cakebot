@@ -80,41 +80,45 @@ class LogsController extends AppController
         if (!$id) {
             $this->redirect($this->request->referer('/', true));
         }
-        $channel = $this->Logs->field('channel', array('id' => $id));
-        $first = $this->Logs->find('first', array(
-            'fields' => array('id'),
-            'conditions' => array ('channel' => $channel, 'id >=' => $id),
-            'offset' => $wrap,
-            'limit' => 1,
-            'order' => 'id ASC'
-        ));
+        $channel = $this->Logs->get($id)->channel;
+
+        $first = $this->Logs->find()
+            ->select('id')
+            ->where([
+                'channel' => $channel,
+                'id >=' => $id,
+            ])
+            ->limit(1)
+            ->order(['id' => 'ASC'])
+            ->first();
+
         if (!$first) {
-            $first = $this->Logs->find('first', array(
+            $first = $this->Logs->find('all', array(
                 'fields' => array('id'),
                 'conditions' => array ('channel' => $channel, 'id >=' => $id),
                 'order' => 'id DESC'
-            ));
+            ))->first();
         }
-        $last = $this->Logs->find('first', array(
+        $last = $this->Logs->find('all', array(
             'fields' => array('id'),
             'conditions' => array ('channel' => $channel, 'id <=' => $id),
             'offset' => $wrap,
             'limit' => 1,
             'order' => 'id DESC'
-        ));
+        ))->first();
         if (!$last) {
-            $last = $this->Logs->find('first', array(
+            $last = $this->Logs->find('all', array(
                 'fields' => array('id'),
                 'conditions' => array ('channel' => $channel, 'id <=' => $id),
                 'order' => 'id ASC'
-            ));
+            ))->first();
         }
 
         $this->paginate['limit'] = $wrap * 3;
-        $this->set('logs', $this->paginate('Log', array(
+        $this->set('logs', $this->paginate($this->Logs, array(
             'channel' => $channel,
-            'id <=' => $first['Log']['id'],
-            'id >=' => $last['Log']['id'],
+            'id <=' => $first->id,
+            'id >=' => $last->id,
         )));
         $this->set('highlight', $id);
         $this->set('wrap', $_wrap);
