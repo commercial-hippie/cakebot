@@ -43,7 +43,15 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        // $this->loadComponent('Auth');
     }
+
+    /*
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'view', 'display', 'search']);
+    }
+    */
 
     /**
      * Before render callback.
