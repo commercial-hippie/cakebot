@@ -38,17 +38,18 @@
 } else {
 	echo '<h2>'. sprintf(__('Log message #%s', true), $this->passedArgs[0]) . '</h2>';
 }
-// $this->Paginator->options(array('url' => $this->passedArgs));
-// echo $this->Paginator->counter(['format' => 'Page {{page}} of {{pages}}, showing {{current}} records out of {{count}} total, starting on record {{start}}, ending on {{end}}']);
-?></p>
+?>
+
+<p><?= $this->Paginator->counter('Page {{page}} of {{pages}}, showing {{current}} records out of {{count}} total, starting on record {{start}}, ending on {{end}}') ?></p>
+
 <table>
-<tr>
-	<th class="at"><?php echo $this->Paginator->sort('#', 'id');?></th>
-	<th class="at"><nobr><?php echo $this->Paginator->sort('At', 'created');?></nobr></th>
-	<th class="username"><?php echo $this->Paginator->sort('username');?></th>
-	<th class="text"><?php echo $this->Paginator->sort('text');?></th>
-	<th class="actions"><?php __('Report');?></th>
-</tr>
+    <tr>
+    	<th class="at"><?php echo $this->Paginator->sort('#', 'id');?></th>
+    	<th class="at"><nobr><?php echo $this->Paginator->sort('At', 'created');?></nobr></th>
+    	<th class="username"><?php echo $this->Paginator->sort('username');?></th>
+    	<th class="text"><?php echo $this->Paginator->sort('text');?></th>
+    	<th class="actions"><?php __('Report');?></th>
+    </tr>
 <?php
 if (!isset($highlight)) {
 	$highlight = $wrap = false;
@@ -87,8 +88,5 @@ foreach ($logs as $log):
 <?php endforeach; ?>
 </table>
 </div>
-<ul class="pagination">
-    <?= $this->Paginator->prev() ?>
-    <?= $this->Paginator->numbers() ?>
-    <?= $this->Paginator->next() ?>
-</ul>
+
+<?= $this->element('pagination') ?>
