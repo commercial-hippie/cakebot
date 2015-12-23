@@ -1,4 +1,4 @@
-<h1><?php __('Channels');?></h1>
+<h1><?= __('Channels');?></h1>
 
 <p><?= $this->Paginator->counter('Page {{page}} of {{pages}}, showing {{current}} records out of {{count}} total, starting on record {{start}}, ending on {{end}}') ?></p>
 
