@@ -132,7 +132,7 @@ class LogsController extends AppController
      */
     public function index()
     {
-        $this->set('logs', $this->paginate($this->Logs));
+        $this->set('channels', $this->paginate($this->Logs->Channels->find()));
         $this->set('_serialize', ['logs']);
     }
 
