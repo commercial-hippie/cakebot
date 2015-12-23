@@ -57,7 +57,6 @@
                 'id' => 'message-' . $log->id,
                 'title' => __('direct link to: {0}', $log->text)
             ]) ?>
-    		?>
         </td>
 		<td class="max-width"><?= $log->created->nice() ?></td>
 		<td class="max-width"><?php echo $log->username; ?></td>

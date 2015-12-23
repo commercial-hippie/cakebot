@@ -9,7 +9,7 @@
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-            <li><?php echo $this->Html->link('About CakeBot', '/pages/about');?></li>
+            <li><a href="https://github.com/cakephp/cakebot">About CakeBot</a></li>
             <li><a href="http://cakephp.org/">About CakePHP</a></li>
             <li><a href="http://cakefoundation.org/pages/donations">Donate</a></li>
         </ul>

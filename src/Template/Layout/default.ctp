@@ -40,19 +40,21 @@ $cakeBotDescription =  __('for CakeBot: the best friend of irc');
     <?= $this->element('top-bar-related') ?>
     <?= $this->element('top-bar') ?>
 
-    <div id="content" >
+    <div id="content" class="row-fluid">
         <div class="columns">
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
         </div>
     </div>
     <div id="footer">
-        <?php echo $this->Html->link(
-            $this->Html->image('cake.power.gif', array('alt'=> __("CakePHP: the rapid development php framework", true), 'border'=>"0")),
+        <p><?php echo $this->Html->link(
+            $this->Html->image('cake.power.gif', [
+                'alt'=> __('CakePHP: the rapid development php framework')
+            ]),
             'http://www.cakephp.org/',
-            array('target'=>'_new'), null, false
+            ['target'=>'_blank', 'escapeTitle' => false]
         );
-        ?>
+        ?></p>
     </div>
 
 </body>

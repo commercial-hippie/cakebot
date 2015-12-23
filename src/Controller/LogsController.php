@@ -28,11 +28,6 @@ class LogsController extends AppController
         )
     );
 
-    function beforeFilter(Event $event) {
-        parent::beforeFilter($event);
-        // $this->Auth->allow('link');
-    }
-
     /**
      * Search method
      *
@@ -120,6 +115,7 @@ class LogsController extends AppController
             'id <=' => $first->id,
             'id >=' => $last->id,
         )));
+        $this->set('channel', $channel);
         $this->set('highlight', $id);
         $this->set('wrap', $_wrap);
         $this->render('view');
@@ -145,11 +141,13 @@ class LogsController extends AppController
      */
     public function view($channel = null)
     {
-        $logs = $this->Logs->findByChannel('#' . $channel);
+        $channel = '#' . $channel;
+        $logs = $this->paginate($this->Logs->findByChannel($channel));
         // if (!empty($this->params['named']['page']) && $this->params['named']['page'] > 50) {
         //     $this->redirect('/');
         // }
-        $this->set('logs', $this->paginate($logs));
+        $highlight = $wrap = false;
+        $this->set(compact('channel', 'logs', 'highlight', 'wrap'));
         $this->set('_serialize', ['logs']);
     }
 }
