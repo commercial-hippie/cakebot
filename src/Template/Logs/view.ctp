@@ -33,8 +33,6 @@
  * @subpackage    cakebot.views.channels
  */
 ?>
-<?php   // to someone wants to add url highlighting, this is my standard regular expression for urls ^((ht|f)tp(s?)\:\/\/|~/|/)?([\w]+:\w+@)?([a-zA-Z]{1}([\w\-]+\.)+([\w]{2,5}))(:[\d]{1,5})?((/?\w+/)+|/?)(\w+\.[\w]{3,4})?((\?\w+=\w+)?(&\w+=\w+)*)? ?>
-<div class="logs index">
 <?php if ($this->request->action == 'index') {
 	echo '<h2>' . $this->passedArgs[0] . ' ' . sprintf(__('%s Logs', true), $this->passedArgs[0]) . '</h2>';
 } else {
@@ -79,9 +77,9 @@ foreach ($logs as $log):
 			);
 		}
 		?></td>
-		<td nowrap="true"><?= $log->created->nice() ?></td>
+		<td><?= $log->created->nice() ?></td>
 		<td><?php echo $log->username; ?></td>
-		<td class="log-text"><?php echo str_replace('<a', '<a rel="nofollow"', $this->Text->autoLinkUrls(htmlentities($log->text))); ?></td>
+		<td><?php echo str_replace('<a', '<a rel="nofollow"', $this->Text->autoLinkUrls(htmlentities($log->text))); ?></td>
 		<td class="actions">
 			<?php // echo $this->Html->link(__('Report', true), array('action'=>'report', $log['Log']['id']), null, sprintf(__('Are you sure you want to report this message?', true))); ?>
 		</td>
@@ -89,8 +87,8 @@ foreach ($logs as $log):
 <?php endforeach; ?>
 </table>
 </div>
-<div class="paging">
-    <?php // echo $this->Paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
-    <?php // echo $this->Paginator->numbers();?>
-    <?php // echo $this->Paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
-</div>
+<ul class="pagination">
+    <?= $this->Paginator->prev() ?>
+    <?= $this->Paginator->numbers() ?>
+    <?= $this->Paginator->next() ?>
+</ul>

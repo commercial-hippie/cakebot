@@ -1,5 +1,4 @@
-<?php /* SVN FILE: $Id$ */ ?>
-<div id="site_search"><?php
+<?php
 $query = '';
 $channel = 'cakephp';
 if ($this->name == 'Logs') {
@@ -9,12 +8,15 @@ if ($this->name == 'Logs') {
 	       list($channel, $query) = $this->request->params['pass'];
        }
 }
-echo $this->Form->create('Search', array('url' => '/search', 'id' => 'search'));
-echo $this->Form->inputs(array(
-	'legend' => false,
-	'query' => array('label' => false, 'div' => false, 'value' => $query, 'class' => 'query'),
-	'channel' => array('type' => 'hidden', 'value' => $channel),
-));
-echo $this->Form->submit(__('Search', true), array('div' => false, 'id' => 'search_submit_btn'));
-echo $this->Form->end();
-?></div>
+?>
+<?= $this->Form->create('Search', ['url' => '/search', 'id' => 'search']) ?>
+<div class="row collapse">
+    <div class="large-8 small-9 columns">
+      <?= $this->Form->text('query', ['value' => $query]) ?>
+      <?= $this->Form->hidden('channel', ['value' => $channel]) ?>
+    </div>
+    <div class="large-4 small-3 columns">
+      <?= $this->Form->button(__('Search')) ?>
+    </div>
+</div>
+<?= $this->Form->end() ?>
