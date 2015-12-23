@@ -33,59 +33,45 @@
  * @subpackage    cakebot.views.channels
  */
 ?>
-<?php if ($this->request->action == 'index') {
-	echo '<h2>' . $this->passedArgs[0] . ' ' . sprintf(__('%s Logs', true), $this->passedArgs[0]) . '</h2>';
-} else {
-	echo '<h2>'. sprintf(__('Log message #%s', true), $this->passedArgs[0]) . '</h2>';
-}
-?>
+<h1><?= $channel ?> <?= __('logs') ?><?= isset($highlight) ? __(', message #{0}', $highlight) : '' ?></h1>
 
 <p><?= $this->Paginator->counter('Page {{page}} of {{pages}}, showing {{current}} records out of {{count}} total, starting on record {{start}}, ending on {{end}}') ?></p>
 
 <table>
     <tr>
-    	<th class="at"><?php echo $this->Paginator->sort('#', 'id');?></th>
-    	<th class="at"><nobr><?php echo $this->Paginator->sort('At', 'created');?></nobr></th>
-    	<th class="username"><?php echo $this->Paginator->sort('username');?></th>
-    	<th class="text"><?php echo $this->Paginator->sort('text');?></th>
-    	<th class="actions"><?php __('Report');?></th>
+    	<th class="max-width"><?php echo $this->Paginator->sort('id', '#');?></th>
+    	<th class="max-width"><nobr><?php echo $this->Paginator->sort('created', 'At');?></nobr></th>
+    	<th class="max-width"><?php echo $this->Paginator->sort('username');?></th>
+    	<th><?= $this->Paginator->sort('text') ?></th>
+    	<th class="max-width"><?= __('Report') ?></th>
     </tr>
-<?php
-if (!isset($highlight)) {
-	$highlight = $wrap = false;
-}
-$i = 0;
-foreach ($logs as $log):
-	$class = null;
-	if ($i++ % 2 == 0) {
-		$class = ' class="altrow"';
-	}
-	if ($log->id == $highlight) {
-		$class = ' class="highlight"';
-	}
-?>
-	<tr<?php echo $class;?>>
-		<td><?php
-		if ($log->id == $highlight) {
-			echo $this->Html->link('#', '#message' . $log->id, array(
-				'id' => 'message' . $log->id,
-				'title' => 'direct link to: ' .	$log->text)
-			);
-		} else {
-			echo $this->Html->link('#', array('action' => 'link', $log->id, $wrap, '#' => 'message' . ($log->id + 10)), array(
-				'id' => 'message' . $log->id,
-				'title' => 'direct link to: ' .	htmlentities($log->text))
-			);
-		}
-		?></td>
-		<td><?= $log->created->nice() ?></td>
-		<td><?php echo $log->username; ?></td>
+    <?php foreach ($logs as $log): ?>
+	<tr <?= $log->id == $highlight ? 'class="highlight"' : '' ?>>
+		<td class="max-width">
+            <?= $this->Html->link('#', [
+                'action' => 'link',
+                $log->id,
+                $wrap,
+                '#' => 'message-'
+            ], [
+                'id' => 'message-' . $log->id,
+                'title' => __('direct link to: {0}', $log->text)
+            ]) ?>
+    		?>
+        </td>
+		<td class="max-width"><?= $log->created->nice() ?></td>
+		<td class="max-width"><?php echo $log->username; ?></td>
 		<td><?php echo str_replace('<a', '<a rel="nofollow"', $this->Text->autoLinkUrls(htmlentities($log->text))); ?></td>
-		<td class="actions">
-			<?php // echo $this->Html->link(__('Report', true), array('action'=>'report', $log['Log']['id']), null, sprintf(__('Are you sure you want to report this message?', true))); ?>
+		<td class="max-width">
+            <?= $this->Form-> postLink(__('Report'), [
+                'action'=>'report',
+                $log->id
+            ], [
+                'confirm' => __('Are you sure you want to report this message?')
+            ]) ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+    <?php endforeach ?>
 </table>
 </div>
 
