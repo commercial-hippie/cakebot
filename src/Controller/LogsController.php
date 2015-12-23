@@ -149,7 +149,7 @@ class LogsController extends AppController
         // if (!empty($this->params['named']['page']) && $this->params['named']['page'] > 50) {
         //     $this->redirect('/');
         // }
-        $this->set('logs', $logs);
+        $this->set('logs', $this->paginate($logs));
         $this->set('_serialize', ['logs']);
     }
 }
