@@ -10,7 +10,8 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
-        "phergie/phergie-irc-bot-react": "~1"
+        "phergie/phergie-irc-bot-react": "~2",
+        "phergie/phergie-irc-plugin-react-autojoin": "~2"
     },
     "require-dev": {
         "psy/psysh": "@stable",
