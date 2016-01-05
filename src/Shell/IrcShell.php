@@ -13,6 +13,10 @@ use Phergie\Irc\Event\UserEventInterface as Event;
 class IrcShell extends Shell
 {
 
+    public $tasks  = [
+        'TellCommand',
+    ];
+
     public function initialize()
     {
         parent::initialize();
@@ -31,6 +35,14 @@ class IrcShell extends Shell
 
         $client = $bot->getClient();
         $client->on('irc.received.privmsg', [$this, 'logPrivmsg']);
+
+        foreach ($this->taskNames as $task) {
+            if (substr($task, -7) == 'Command') {
+                $command = strtolower(substr($task, 0, -7));
+                debug($command);
+                $client->on('command.' . $command, [$this->{$task}, 'main']);
+            }
+        }
 
         $bot->run();
     }
