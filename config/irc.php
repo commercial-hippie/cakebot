@@ -17,6 +17,9 @@ return [
             new AutoJoinPlugin([
                 'channels' => '#cakephp-test',
             ]),
+            new CommandPlugin([
+                'prefix' => '!', // String denoting the start of a command
+            ]),
         ],
     ],
 ];

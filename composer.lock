@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bf1afdd563b8d859c3dab55dde7b819c",
-    "content-hash": "7c5a09be33f08aa0bcf4845d62675159",
+    "hash": "6e9d4846af35448ba5db964108358c47",
+    "content-hash": "42b783b1c5338a6d6374aa621aad984c",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -841,6 +841,46 @@
                 "react"
             ],
             "time": "2015-12-21 23:43:28"
+        },
+        {
+            "name": "phergie/phergie-irc-plugin-react-command",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phergie/phergie-irc-plugin-react-command.git",
+                "reference": "c4310f7856dbee97b91fe62ec3bf7e1b11a2db95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-command/zipball/c4310f7856dbee97b91fe62ec3bf7e1b11a2db95",
+                "reference": "c4310f7856dbee97b91fe62ec3bf7e1b11a2db95",
+                "shasum": ""
+            },
+            "require": {
+                "phergie/phergie-irc-bot-react": "~2"
+            },
+            "require-dev": {
+                "phake/phake": "2.0.0-beta2",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phergie\\Irc\\Plugin\\React\\Command\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "description": "Phergie plugin for parsing commands issued to the bot",
+            "keywords": [
+                "bot",
+                "irc",
+                "plugin",
+                "react"
+            ],
+            "time": "2015-12-21 22:30:19"
         },
         {
             "name": "psr/log",
