@@ -30,3 +30,13 @@ try {
 } catch (MissingPluginException $e) {
     // Do not halt if the plugin is missing
 }
+
+/**
+ * Read configuration file and inject configuration into various
+ * CakePHP classes.
+ */
+try {
+    Configure::load('irc', 'default', false);
+} catch (\Exception $e) {
+    die($e->getMessage() . "\n");
+}
