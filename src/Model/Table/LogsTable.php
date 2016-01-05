@@ -61,9 +61,11 @@ class LogsTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
+    /*
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['username']));
         return $rules;
     }
+    */
 }
