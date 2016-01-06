@@ -16,6 +16,7 @@ class IrcShell extends Shell
     public $tasks  = [
         'TellCommand',
         'SlapCommand',
+        'RolloverCommand',
     ];
 
     public function initialize()
