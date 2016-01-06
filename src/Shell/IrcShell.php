@@ -39,7 +39,6 @@ class IrcShell extends Shell
         foreach ($this->taskNames as $task) {
             if (substr($task, -7) == 'Command') {
                 $command = strtolower(substr($task, 0, -7));
-                debug($command);
                 $client->on('command.' . $command, [$this->{$task}, 'main']);
             }
         }
