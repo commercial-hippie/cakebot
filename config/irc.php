@@ -3,8 +3,11 @@ use Phergie\Irc\Connection;
 use Phergie\Irc\Plugin\React\AutoJoin\Plugin as AutoJoinPlugin;
 use Phergie\Irc\Plugin\React\Command\Plugin as CommandPlugin;
 
+$channels = ['#cakephp-test'];
+
 return [
     'Phergie' => [
+        'channels' => $channels,
         'connections' => [
             new Connection([
                 'serverHostname' => 'irc.freenode.net',
@@ -15,7 +18,7 @@ return [
         ],
         'plugins' => [
             new AutoJoinPlugin([
-                'channels' => '#cakephp-test',
+                'channels' => $channels,
             ]),
             new CommandPlugin([
                 'prefix' => '!', // String denoting the start of a command

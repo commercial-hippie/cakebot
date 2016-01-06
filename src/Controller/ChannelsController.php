@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Core\Configure;
 
 /**
  * Channels Controller
@@ -18,7 +19,7 @@ class ChannelsController extends AppController
      */
     public function index()
     {
-        $this->set('channels', $this->paginate($this->Channels));
+        $this->set('channels', Configure::read('Phergie.channels'));
         $this->set('_serialize', ['channels']);
     }
 
