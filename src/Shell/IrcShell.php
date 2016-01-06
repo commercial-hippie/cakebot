@@ -20,6 +20,7 @@ class IrcShell extends Shell
         'IssuesCommand',
         'GoogleCommand',
         'BookCommand',
+        'BinCommand',
     ];
 
     public function initialize()
