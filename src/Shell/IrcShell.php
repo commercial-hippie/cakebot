@@ -17,6 +17,7 @@ class IrcShell extends Shell
         'TellCommand',
         'SlapCommand',
         'RolloverCommand',
+        'IssuesCommand',
     ];
 
     public function initialize()
